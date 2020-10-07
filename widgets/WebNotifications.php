@@ -51,10 +51,15 @@ class WebNotifications extends \yii\base\Widget
 
 
         // set VAPID public key
-        if($module->channels['web']['enable'] && empty($module->channels['web']['auth']['VAPID']['publicKey'])) {
-            throw new Exception('Invalid configuration for module Notification: Missing VAPID keys. Please see the readme.txt to configure correctly your application.');
+        if(ArrayHelper::getValue($webChannel, 'enable')) {
+            $publicKey = ArrayHelper::getValue($webChannel, 'auth.VAPID.publicKey');
+
+            if(empty($publicKey)) {
+                throw new Exception('Invalid configuration for module Notification: Missing VAPID keys. Please see the readme.txt to configure correctly your application.');
+            }
+
+            $this->_vapidPubKey = $publicKey;
         }
-        $this->_vapidPubKey = $module->channels['web']['auth']['VAPID']['publicKey'];
 
     }
 
