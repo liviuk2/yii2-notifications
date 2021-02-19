@@ -3,9 +3,6 @@ This module provides a way to sending notifications across a variety of delivery
 
 Notifications are short messages that notify users of something that occurred in your application. For example, if you are writing a billing application, you might send an "Invoice Paid" notification to your users via the email and SMS channels.
 
-<p align="left">
-    <img src="http://5.189.150.145/21621947_10155695011058377_659334693.jpg" alt="Yii2 Notifications Module" />
-</p>
 
 Requirements
 ------------
@@ -296,16 +293,9 @@ This channel is used to send web push notification to subscriber. Each notificat
 ./yii migrate/up --migrationPath=vendor/webzop/yii2-notifications/migrations/
 ```
 
-So you can call the Notifications widget in your app layout to show generated notifications:
-
-```html
-<div>
-    <?php echo \webzop\notifications\widgets\WebNotifications::widget() ?>
-</div>
-```
-
-You can customize the HTML template for the widget as follow. 
-Setting template to false will hide all widget HTML and the browser will prompts the user to allow notifications.
+In order to promp the user for allowing push notifications on his device the following widged should be loaded in your main app.
+You can customize the HTML template for the widget used to require as follow. 
+Setting template to false will hide all widget HTML and the browser will prompts the user to allow notifications directly on page load.
 If you customize the HTML template remember to include a button with id 'js-web-push-subscribe-button':
 
 ```html
@@ -317,3 +307,11 @@ If you customize the HTML template remember to include a button with id 'js-web-
 ```
 
 Remember to place the service-worker.js file in the web root in order to serve the service worker when the WebNotifications widget is initialized.
+
+So you can call the Notifications widget in your app layout to show generated notifications:
+
+```html
+<div>
+    <?php echo \webzop\notifications\widgets\WebNotifications::widget() ?>
+</div>
+```
